@@ -1,0 +1,16 @@
+body {
+  margin: 0 auto;
+}
+
+.test-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
+.big-text {
+  font-size: 5rem;
+}
