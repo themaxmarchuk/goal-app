@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const { SubresourceIntegrityPlugin } = require('webpack-subresource-integrity')
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 
 // Define absolute paths used throughout the configuration
 const paths = {
@@ -131,6 +132,8 @@ module.exports = {
     isProduction && new CleanWebpackPlugin(),
     // Report what webpack is currently working on to the CLI
     new webpack.ProgressPlugin(),
+    // React Refresh provides hot reloading for react applications
+    !isProduction && new ReactRefreshWebpackPlugin(),
     // Subresource Integrity plugin generates file hashes in HTML tags
     isProduction && new SubresourceIntegrityPlugin(),
     // HTML plugin injects script/style tags into a template index.html file

@@ -29,7 +29,8 @@ module.exports = (api) => {
           regenerator: true,
           useESModules: false
         }
-      ]
-    ]
+      ],
+      !isProduction && require('react-refresh/babel')
+    ].filter(Boolean)
   }
 }
