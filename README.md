@@ -1,2 +1,2 @@
 # goal-app
-Simple application to progress towards track goals
+Simple application to track progress towards goals
