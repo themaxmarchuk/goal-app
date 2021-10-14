@@ -1,7 +1,7 @@
 module.exports = {
   postcssOptions: {
-    plugins: [
-      require('autoprefixer')
-    ]
+    plugins: {
+      autoprefixer: {}
+    }
   }
 }

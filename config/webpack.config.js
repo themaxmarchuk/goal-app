@@ -1,12 +1,12 @@
 const path = require('path')
 const webpack = require('webpack')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const { SubresourceIntegrityPlugin } = require('webpack-subresource-integrity')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 // Define absolute paths used throughout the configuration
 const paths = {
@@ -26,6 +26,10 @@ module.exports = {
   mode: isProduction ? 'production' : 'development',
   // Only enable source maps for development
   devtool: isProduction ? false : 'inline-source-map',
+  stats: {
+    usedExports: true,
+    assets: true
+  },
   // Specify entry points
   entry: {
     main: './src/index.js'
@@ -36,6 +40,8 @@ module.exports = {
   output: {
     // The root path of all output files
     path: paths.build,
+    // Clean the dist folder between builds
+    clean: true,
     // Allow anonymous cross origin loading (webpack-subresource-integrity)
     crossOriginLoading: 'anonymous',
     // Configure the output JS filenames with cache-busting hashes in production
@@ -43,6 +49,8 @@ module.exports = {
     chunkFilename: '[name].[contenthash].bundle.js'
   },
   optimization: {
+    // Setup tree shaking
+    usedExports: true,
     // Only run optimization plugins in production
     minimize: isProduction,
     // Define minimization plugins
@@ -66,6 +74,16 @@ module.exports = {
       cacheGroups: {
         // Enable automatic vendor code extraction into a separate file
         // This enables us to cache vendor code separately which likely isn't subject to frequent changes
+        mui: {
+          test: /[\\/]node_modules[\\/]@mui.?/,
+          name: 'mui',
+          chunks: 'all'
+        },
+        react: {
+          test: /[\\/]node_modules[\\/]react.?/,
+          name: 'react',
+          chunks: 'all'
+        },
         vendor: {
           test: /[\\/]node_modules[\\/]/,
           name: 'vendor',
@@ -128,34 +146,19 @@ module.exports = {
   },
   // NOTE: the plugins array is filtered with the Boolean function to disable plugins based on the environment
   plugins: [
-    // Clean the dist folder before production builds
-    isProduction && new CleanWebpackPlugin(),
     // Report what webpack is currently working on to the CLI
     new webpack.ProgressPlugin(),
+    // Enable bundle analyzer
+    // new BundleAnalyzerPlugin(),
     // React Refresh provides hot reloading for react applications
     !isProduction && new ReactRefreshWebpackPlugin(),
     // Subresource Integrity plugin generates file hashes in HTML tags
     isProduction && new SubresourceIntegrityPlugin(),
     // HTML plugin injects script/style tags into a template index.html file
-    new HtmlWebpackPlugin(
-      Object.assign(
-        {},
-        {
-          // Use a template file instead of generating the HTML from scratch
-          template: './src/index.html'
-        },
-        // Only minify the html file in production
-        isProduction ? {
-          minify: {
-            collapseWhitespace: true,
-            removeComments: true,
-            removeRedundantAttributes: true,
-            removeScriptTypeAttributes: true,
-            removeStyleLinkTypeAttributes: true,
-            useShortDoctype: true
-          }
-        } : undefined
-      )),
+    new HtmlWebpackPlugin({
+      // Use a template file instead of generating the HTML from scratch
+      template: './src/index.html'
+    }),
     // The MiniCSSExtractPlugin is used to extract all css a single file in production
     isProduction && new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css'
