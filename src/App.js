@@ -6,6 +6,7 @@ import { ThemeProvider } from '@emotion/react'
 
 import AddTaskModal from './components/AddTaskModal'
 import DateTime from './components/DateTime'
+import History from './components/History'
 
 const theme = createTheme({
   components: {
@@ -33,10 +34,9 @@ export default function App () {
       <ThemeProvider theme={theme}>
         <CssBaseline>
           <div className='test-div big-text'>
-            <div>
-              {showTime && <DateTime />}
-              <AddTaskModal toggleShowTime={() => setShowTime(!showTime)} />
-            </div>
+            {showTime && <DateTime />}
+            {/* <AddTaskModal toggleShowTime={() => setShowTime(!showTime)} /> */}
+            <History />
           </div>
         </CssBaseline>
       </ThemeProvider>
