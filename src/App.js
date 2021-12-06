@@ -1,45 +1,24 @@
 import React from 'react'
 
-import { CssBaseline, colors, createTheme, StyledEngineProvider } from '@mui/material'
-
-import { ThemeProvider } from '@emotion/react'
-
-import AddTaskModal from './components/AddTaskModal'
-import DateTime from './components/DateTime'
-import History from './components/History'
-
-const theme = createTheme({
-  components: {
-    MuiCard: {
-      styleOverrides: {
-        root: {
-          backgroundColor: colors.deepPurple[400]
-        }
-      }
-    }
-  },
-  palette: {
-    primary: colors.deepPurple,
-    background: {
-      default: '#3B3F69'
-    }
-  }
-})
+import planet from './img/planet.svg'
+import rocket from './img/rocket.svg'
 
 export default function App () {
-  const [showTime, setShowTime] = React.useState(true)
-
   return (
-    <StyledEngineProvider injectFirst>
-      <ThemeProvider theme={theme}>
-        <CssBaseline>
-          <div className='test-div big-text'>
-            {showTime && <DateTime />}
-            {/* <AddTaskModal toggleShowTime={() => setShowTime(!showTime)} /> */}
-            <History />
-          </div>
-        </CssBaseline>
-      </ThemeProvider>
-    </StyledEngineProvider>
+    <div className='font-roboto mt-8 ml-10'>
+      <div className='text-3xl'>
+        <img src={planet} className='inline-block mb-2 mr-2' />
+        <span className='text-white'>Goal</span>
+        <span className='text-green-bright ml-1'>App</span>
+      </div>
+      <div className='text-[5rem] ml-40 mt-16 inline-block'>
+        <h1 className='text-white'>Track your Goals</h1>
+        <h1 className='text-white text-right italic'>
+          <span className='text-green-bright'>with </span>
+          <span className='text-magenta-bright'>style.</span>
+        </h1>
+        <img src={rocket} className='scale-[85%] relative translate-y-[-11rem]' />
+      </div>
+    </div>
   )
 }
