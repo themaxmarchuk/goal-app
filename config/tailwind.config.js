@@ -13,12 +13,13 @@ module.exports = {
       colors: {
         purple: {
           dark: '#5E35B1',
-          base: '#B388FF',
-          light: '#C0CAF5'
+          DEFAULT: '#B388FF',
         },
         blue: {
           dark: '#1B1F38',
-          base: '#5A67A1'
+          DEFAULT: '#5A67A1',
+          base: '#353D6E',
+          light: '#C0CAF5'
         },
         magenta: { 
           bright: '#FF4284'
