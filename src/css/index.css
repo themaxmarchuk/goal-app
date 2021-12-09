@@ -1,0 +1,37 @@
+.button-outlined-top {
+  @apply flex 
+  justify-center items-center
+  border-2 border-blue-light
+  pt-4 pb-4 rounded-[10px]
+  transition-all
+  group-active:translate-y-1
+  group-hover:translate-y-[-10px]
+  z-10
+  w-[13.5rem];
+}
+
+.button-outlined-bottom {
+  @apply flex
+  translate-y-[-49px]
+  h-[3.75rem] w-[13.5rem]
+  rounded-[10px]
+  z-0;
+}
+
+.button-flat-top {
+  @apply flex
+  justify-center items-center
+  transition-all
+  pt-4 pb-4 rounded-[10px]
+  group-hover:translate-y-[-12px]
+  group-active:translate-y-1
+  translate-y-[-2px]
+  z-10
+  w-[13.5rem]
+}
+
+.button-flat-bottom {
+  @apply rounded-[10px]
+  z-0 h-[3.75rem] w-[13.5rem]
+  translate-y-[-47px];
+}

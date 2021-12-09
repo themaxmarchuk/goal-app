@@ -32,18 +32,18 @@ export default function App () {
             Progress redefined.<br />
             Based on proven psychological principles.
           </div>
-          <div className='mt-12 flex'>
-            <button className='text-xl text-center'>
-              <div className='flex border-2 relative transition-all active:translate-y-1 hover:translate-y-[-10px] bg-blue-dark border-blue-light justify-center z-10 items-center pt-4 pb-4 w-[13.5rem] rounded-[10px]'>
+          <div className='mt-12 border'>
+            <button className='group text-xl text-center pb-[11px]'>
+              <div className='bg-blue-dark relative button-outlined-top border-blue-light'>
                 See More
               </div>
-              <div className='flex bg-blue-light shadow-md relative translate-y-[-49px] z-0 h-[3.75rem] w-[13.5rem] rounded-[10px]' />
+              <div className='peer absolute button-outlined-bottom bg-blue-light shadow-md' />
             </button>
-            <button className='text-xl text-center ml-8' >
-              <div className='flex relative bg-magenta-bright justify-center z-10 items-center pt-4 pb-4 transition-all hover:translate-y-[-12px] active:translate-y-1 translate-y-[-2px] w-[13.5rem] rounded-[10px]'>
+            <button className='group text-xl text-center ml-8 pb-3' >
+              <div className='button-flat-top relative bg-magenta-bright'>
                 Launch Today <img src={faRocket} className='scale-[85%] ml-[11px]' />
               </div>
-              <div className='flex bg-purple-dark shadow-md relative translate-y-[-47px]  z-0 h-[3.75rem] w-[13.5rem] rounded-[10px]' />
+              <div className='flex bg-purple-dark shadow-md absolute button-flat-bottom' />
             </button>
           </div>
         </div>
