@@ -32,7 +32,7 @@ export default function App () {
             Progress redefined.<br />
             Based on proven psychological principles.
           </div>
-          <div className='mt-12 border'>
+          <div className='mt-12'>
             <button className='group text-xl text-center pb-[11px]'>
               <div className='bg-blue-dark relative button-outlined-top border-blue-light'>
                 See More
