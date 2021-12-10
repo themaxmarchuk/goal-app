@@ -14,14 +14,14 @@ export default function App () {
         <span className='text-green-bright ml-1'>App</span>
       </div>
       <div className='flex justify-between mt-16'>
-        <div className='text-[90px] ml-40 relative inline-block'>
+        <div className='text-[90px] ml-52 relative inline-block'>
           <h1>Track your Goals</h1>
           <h1 className='text-right italic'>
             <span className='text-green-bright'>with </span>
             <span className='text-magenta-bright'>style.</span>
           </h1>
           <img src={rocket} className='scale-[85%] absolute left-[1.5rem] top-[4.5rem]' />
-          <img src={smoke} className=' scale-125 z-[-1] absolute left-[-11rem] bottom-[-11rem]' />
+          <img src={smoke} className='z-[-1] fixed left-[-72px] bottom-[-190px]' />
         </div>
         <div className='inline-block text-3xl mr-[8vw] mt-52'>
           <div>
