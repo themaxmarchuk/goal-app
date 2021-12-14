@@ -1,18 +1,16 @@
 import React from 'react'
 
-import planet from './img/planet.svg'
 import rocket from './img/rocket.svg'
 import faRocket from './img/fa-rocket.svg'
 import smoke from './img/smoke.svg'
 
+import RaisedButton from './components/RaisedButton'
+import Logo from './components/Logo'
+
 export default function App () {
   return (
     <div className='font-roboto text-white mt-8 ml-10'>
-      <div className='text-3xl'>
-        <img src={planet} className='inline-block mb-2 mr-2' />
-        <span>Goal</span>
-        <span className='text-green-bright ml-1'>App</span>
-      </div>
+      <Logo />
       <div className='flex justify-between mt-16'>
         <div className='text-[90px] ml-52 relative inline-block'>
           <h1>Track your Goals</h1>
@@ -33,18 +31,13 @@ export default function App () {
             Based on proven psychological principles.
           </div>
           <div className='mt-12'>
-            <button className='group text-xl text-center pb-[11px]'>
-              <div className='bg-blue-dark relative button-outlined-top border-blue-light'>
-                See More
-              </div>
-              <div className='peer absolute button-outlined-bottom bg-blue-light shadow-md' />
-            </button>
-            <button className='group text-xl text-center ml-8 pb-3' >
-              <div className='button-flat-top relative bg-magenta-bright'>
-                Launch Today <img src={faRocket} className='scale-[85%] ml-[11px]' />
-              </div>
-              <div className='flex bg-purple-dark shadow-md absolute button-flat-bottom' />
-            </button>
+            <RaisedButton text='See More' className='test'>
+              See More
+            </RaisedButton>
+            <RaisedButton primary text='Launch Today' icon={faRocket}>
+              Launch Today
+              <img src={faRocket} className='scale-[85%] ml-[11px]' />
+            </RaisedButton>
           </div>
         </div>
       </div>
