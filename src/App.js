@@ -31,7 +31,7 @@ export default function App () {
             Based on proven psychological principles.
           </div>
           <div className='mt-12'>
-            <RaisedButton text='See More' className='test'>
+            <RaisedButton text='See More'>
               See More
             </RaisedButton>
             <RaisedButton primary text='Launch Today' icon={faRocket}>
