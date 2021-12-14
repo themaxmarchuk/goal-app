@@ -34,7 +34,6 @@ module.exports = {
   entry: {
     main: './src/index.js'
   },
-  // Configure webpack-dev-server
   // Output options related to how webpack emits results
   // https://webpack.js.org/configuration/output/
   output: {
@@ -57,7 +56,7 @@ module.exports = {
     minimizer: [
       // Use Terser for JS optimization
       new TerserJSPlugin({
-        // Don't extract comments to a separate LICENCE.txt file
+        // Don't extract comments to a separate LICENSE.txt file
         extractComments: false,
         terserOptions: {
           output: {
@@ -74,11 +73,6 @@ module.exports = {
       cacheGroups: {
         // Enable automatic vendor code extraction into a separate file
         // This enables us to cache vendor code separately which likely isn't subject to frequent changes
-        mui: {
-          test: /[\\/]node_modules[\\/]@mui.?/,
-          name: 'mui',
-          chunks: 'all'
-        },
         react: {
           test: /[\\/]node_modules[\\/]react.?/,
           name: 'react',
@@ -123,7 +117,14 @@ module.exports = {
           // css-loader allows us to process any import statements in the CSS files
           {
             loader: 'css-loader',
-            options: { importLoaders: 1 }
+            options: {
+              importLoaders: 1,
+              // Enable CSS modules for files with .module.css extension
+              modules: {
+                auto: true,
+                localIdentName: '[name]_[local]__[hash:base64:5]'
+              }
+            }
           },
           // Process any CSS imports found with postcss
           {
