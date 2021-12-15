@@ -16,10 +16,10 @@ export default function RaisedButton ({ primary, children, className }) {
   } else {
     return (
       <button className={`group text-xl text-center pb-[11px] ${className}`}>
-        <div className='button-outlined-top bg-blue-dark relative border-blue-light'>
+        <div className='button-outlined-top bg-blue-dark relative border-purple-light'>
           {children}
         </div>
-        <div className='button-outlined-bottom peer absolute bg-blue-light shadow-md' />
+        <div className='button-outlined-bottom peer absolute bg-purple-light shadow-md' />
       </button>
     )
   }

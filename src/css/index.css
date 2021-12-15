@@ -5,7 +5,7 @@
 .button-outlined-top {
   @apply flex 
   justify-center items-center
-  border-2 border-blue-light
+  border-2 border-purple-light
   pt-4 pb-4 rounded-[10px]
   transition-all
   group-active:translate-y-1

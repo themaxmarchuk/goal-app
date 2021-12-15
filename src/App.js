@@ -23,9 +23,9 @@ export default function App () {
         </div>
         <div className='inline-block text-3xl mr-[8vw] mt-52'>
           <div>
-            Visualize your journey.
+            Progress at a glance
           </div>
-          <div className='bg-blue-base mt-3 w-[47rem] h-[9rem] rounded-md shadow-lg' />
+          <div className='bg-blue-lighter mt-3 w-[47rem] h-[9rem] rounded-md shadow-lg' />
           <div className='mt-24'>
             Progress redefined.<br />
             Based on proven psychological principles.
