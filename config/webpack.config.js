@@ -6,7 +6,6 @@ const TerserJSPlugin = require('terser-webpack-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const { SubresourceIntegrityPlugin } = require('webpack-subresource-integrity')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 // Define absolute paths used throughout the configuration
 const paths = {
@@ -26,10 +25,6 @@ module.exports = {
   mode: isProduction ? 'production' : 'development',
   // Only enable source maps for development
   devtool: isProduction ? false : 'inline-source-map',
-  stats: {
-    usedExports: true,
-    assets: true
-  },
   // Specify entry points
   entry: {
     main: './src/index.js'
@@ -44,8 +39,9 @@ module.exports = {
     // Allow anonymous cross origin loading (webpack-subresource-integrity)
     crossOriginLoading: 'anonymous',
     // Configure the output JS filenames with cache-busting hashes in production
-    filename: isProduction ? '[name].[contenthash].bundle.js' : '[name].bundle.js',
-    chunkFilename: '[name].[contenthash].bundle.js'
+    filename: isProduction ? '[name].[contenthash:8].bundle.js' : '[name].bundle.js',
+    chunkFilename: '[name].[contenthash:8].bundle.js',
+    assetModuleFilename: 'assets/[name].[hash:8][ext][query]'
   },
   optimization: {
     // Setup tree shaking
@@ -134,14 +130,10 @@ module.exports = {
           }
         ]
       },
-      // file-loader is to load any image/resource files
+      // load resource files
       {
         test: /\.(png|jpe?g|gif|svg)$/,
-        loader: 'file-loader',
-        options: {
-          // Files will be placed in an assets directory with a cache-busting hash in the filename
-          name: 'assets/[name].[contenthash:8].[ext]'
-        }
+        type: 'asset/resource'
       }
     ]
   },
@@ -149,8 +141,6 @@ module.exports = {
   plugins: [
     // Report what webpack is currently working on to the CLI
     new webpack.ProgressPlugin(),
-    // Enable bundle analyzer
-    // new BundleAnalyzerPlugin(),
     // React Refresh provides hot reloading for react applications
     !isProduction && new ReactRefreshWebpackPlugin(),
     // Subresource Integrity plugin generates file hashes in HTML tags
@@ -162,7 +152,7 @@ module.exports = {
     }),
     // The MiniCSSExtractPlugin is used to extract all css a single file in production
     isProduction && new MiniCssExtractPlugin({
-      filename: '[name].[contenthash].css'
+      filename: '[name].[contenthash:8].css'
     })
   ].filter(Boolean)
 }
