@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.history-panel {
-  box-shadow: 3px 5px 6px rgba(0, 0, 0, 0.15);
-}
-
 .button-outlined-top {
   @apply flex 
   justify-center items-center

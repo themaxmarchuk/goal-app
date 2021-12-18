@@ -3,7 +3,6 @@ import React from 'react'
 import rocket from './img/rocket.svg'
 import faRocket from './img/fa-rocket.svg'
 import smoke from './img/smoke.svg'
-import bullet from './img/bullet-point.svg'
 
 import RaisedButton from './components/RaisedButton'
 import Logo from './components/Logo'
@@ -51,10 +50,10 @@ export default function App () {
             </ul>
           </div>
           <div className='mt-9'>
-            <RaisedButton text='See More'>
+            <RaisedButton>
               See More
             </RaisedButton>
-            <RaisedButton primary text='Launch Today' icon={faRocket}>
+            <RaisedButton primary>
               Launch Today
               <img src={faRocket} className='scale-[85%] ml-[11px]' />
             </RaisedButton>
