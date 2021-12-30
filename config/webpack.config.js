@@ -1,11 +1,11 @@
-const path = require('path')
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const TerserJSPlugin = require('terser-webpack-plugin')
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
-const { SubresourceIntegrityPlugin } = require('webpack-subresource-integrity')
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserJSPlugin = require('terser-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const {SubresourceIntegrityPlugin} = require('webpack-subresource-integrity');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 // Define absolute paths used throughout the configuration
 const paths = {
@@ -14,11 +14,11 @@ const paths = {
   // Babel configuration file
   babel: path.resolve('./config/babel.config.js'),
   // Postcss configuration file
-  postcss: path.resolve('./config/postcss.config.js')
-}
+  postcss: path.resolve('./config/postcss.config.js'),
+};
 
 // This variable is used to apply different configuration options based on the environment
-const isProduction = process.env.NODE_ENV === 'production' || false
+const isProduction = process.env.NODE_ENV === 'production' || false;
 
 module.exports = {
   // Chosen mode tells webpack to use its built-in optimizations accordingly
@@ -27,7 +27,7 @@ module.exports = {
   devtool: isProduction ? false : 'inline-source-map',
   // Specify entry points
   entry: {
-    main: './src/index.js'
+    main: './src/index.js',
   },
   // Output options related to how webpack emits results
   // https://webpack.js.org/configuration/output/
@@ -41,7 +41,7 @@ module.exports = {
     // Configure the output JS filenames with cache-busting hashes in production
     filename: isProduction ? '[name].[contenthash:8].bundle.js' : '[name].bundle.js',
     chunkFilename: '[name].[contenthash:8].bundle.js',
-    assetModuleFilename: 'assets/[name].[hash:8][ext][query]'
+    assetModuleFilename: 'assets/[name].[hash:8][ext][query]',
   },
   optimization: {
     // Setup tree shaking
@@ -57,12 +57,12 @@ module.exports = {
         terserOptions: {
           output: {
             // Strip all comments from output files
-            comments: false
-          }
-        }
+            comments: false,
+          },
+        },
       }),
       // Minimize CSS with default configuration
-      new CssMinimizerPlugin()
+      new CssMinimizerPlugin(),
     ],
     // Split files into chunks to decrease time spent loading
     splitChunks: {
@@ -72,15 +72,15 @@ module.exports = {
         react: {
           test: /[\\/]node_modules[\\/]react.?/,
           name: 'react',
-          chunks: 'all'
+          chunks: 'all',
         },
         vendor: {
           test: /[\\/]node_modules[\\/]/,
           name: 'vendor',
-          chunks: 'all'
-        }
-      }
-    }
+          chunks: 'all',
+        },
+      },
+    },
   },
   // Module options
   // These options determine how the different types of modules within a project will be treated
@@ -97,8 +97,8 @@ module.exports = {
         options: {
           // Point to an external babel configuration file
           // https://babeljs.io/docs/en/configuration
-          configFile: paths.babel
-        }
+          configFile: paths.babel,
+        },
       },
       // Load CSS files with postcss
       // css files --> postcss-loader --> css-loader --> MiniCssExtractPlugin (production) | style-loader (development)
@@ -118,24 +118,24 @@ module.exports = {
               // Enable CSS modules for files with .module.css extension
               modules: {
                 auto: true,
-                localIdentName: '[name]_[local]__[hash:base64:5]'
-              }
-            }
+                localIdentName: '[name]_[local]__[hash:base64:5]',
+              },
+            },
           },
           // Process any CSS imports found with postcss
           {
             loader: 'postcss-loader',
             // Load postcss options from an external file
-            options: require(paths.postcss)
-          }
-        ]
+            options: require(paths.postcss),
+          },
+        ],
       },
       // load resource files
       {
         test: /\.(png|jpe?g|gif|svg)$/,
-        type: 'asset/resource'
-      }
-    ]
+        type: 'asset/resource',
+      },
+    ],
   },
   // NOTE: the plugins array is filtered with the Boolean function to disable plugins based on the environment
   plugins: [
@@ -148,11 +148,12 @@ module.exports = {
     // HTML plugin injects script/style tags into a template index.html file
     new HtmlWebpackPlugin({
       // Use a template file instead of generating the HTML from scratch
-      template: './src/index.html'
+      template: './src/index.html',
     }),
     // The MiniCSSExtractPlugin is used to extract all css a single file in production
-    isProduction && new MiniCssExtractPlugin({
-      filename: '[name].[contenthash:8].css'
-    })
-  ].filter(Boolean)
-}
+    isProduction &&
+      new MiniCssExtractPlugin({
+        filename: '[name].[contenthash:8].css',
+      }),
+  ].filter(Boolean),
+};
